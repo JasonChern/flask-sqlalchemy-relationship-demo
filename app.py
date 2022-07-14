@@ -8,7 +8,9 @@ migrate = Migrate()
 
 import DataStruct
 
+
 # http://127.0.0.1:5000/create_student?name=s1&number=1
+
 def create_student():
 
     name = request.args.get('name')
@@ -24,6 +26,8 @@ def create_student():
     """
 
 # http://127.0.0.1:5000/create_task?id=1&name=國文&score=70
+
+
 def create_task():
 
     id = request.args.get('id')
@@ -38,14 +42,16 @@ def create_task():
     return f"""
     <h1>Hello ({id}){name} => {score}</h1>
     """
+
+
 def student_task(id):
-    
+
     print(id)
 
     query = DataStruct.Student.query.filter_by(number=id).first()
 
     print(query.__dict__)
-    
+
     content = ''
 
     print(query.task_data)
@@ -54,6 +60,7 @@ def student_task(id):
         content += f"<p>{task.name} : {task.score} 分</p>"
 
     return content
+
 
 def create_app():
     app = Flask(__name__)
@@ -71,6 +78,7 @@ def create_app():
     return app
 
 
-if __name__ == '__main__':
-    app = create_app()
-    app.run(debug=True)
+# if __name__ == '__main__':
+#     app = create_app()
+#     app.run(host='0.0.0.0', debug=True)
+app = create_app()

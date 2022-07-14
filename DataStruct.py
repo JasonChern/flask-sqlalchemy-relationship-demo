@@ -6,7 +6,7 @@ from datetime import datetime
 
 class Student(db.Model):
     id = Column(Integer, primary_key=True)
-    name = Column(String)
+    name = Column(String(10))
     number = Column(String(10), unique=True)
     insert_time = Column(DateTime, default=datetime.now)
 
@@ -19,10 +19,10 @@ class Student(db.Model):
 
 class TaskData(db.Model):
     id = Column(Integer, primary_key=True)
-    name = Column(String)
+    name = Column(String(10))
     score = Column(Integer)
 
-    student_id = db.Column(Integer, ForeignKey('student.number'))
+    student_id = db.Column(String(10), ForeignKey('student.number'))
 
     def __init__(self, student_id, name, score):
         self.student_id = student_id
